@@ -1,3 +1,4 @@
+CC      = winegcc
 CFLAGS  = -O3 -march=native -ggdb3 -m32 -std=gnu99 -fshort-wchar -Wno-multichar -Iinclude -mstackrealign
 CPPFLAGS=-DNDEBUG -D_GNU_SOURCE -I. -Iintercept -Ipeloader
 LDFLAGS = $(CFLAGS) -m32 -lm -Wl,--dynamic-list=exports.lst

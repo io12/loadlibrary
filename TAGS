@@ -1,0 +1,11 @@
+
+mpclient.c,706
+# define _GNU_SOURCE_GNU_SOURCE16,566
+const struct rlimit kUsageLimits[] = {kUsageLimits55,1349
+DWORD (* __rsignal)(PHANDLE KernelHandle, DWORD Code, PVOID Params, DWORD Size);__rsignal62,1674
+static DWORD EngineScanCallback(PSCANSTRUCT Scan)EngineScanCallback64,1756
+static DWORD ReadStream(PVOID this, ULONGLONG Offset, PVOID Buffer, DWORD Size, PDWORD SizeRead)ReadStream94,2704
+static DWORD GetStreamSize(PVOID this, PULONGLONG FileSize)GetStreamSize101,2904
+static PWCHAR GetStreamName(PVOID this)GetStreamName108,3045
+BOOL __noinline InstrumentationCallback(PVOID ImageStart, SIZE_T ImageSize)InstrumentationCallback114,3147
+int main(int argc, char **argv, char **envp)main121,3319
