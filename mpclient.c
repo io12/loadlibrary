@@ -135,7 +135,7 @@ int main(int argc, char **argv, char **envp)
 		errx(EXIT_FAILURE, "Failed to load mpengine module");
 	}
 
-	__rsignal = GetProcAddress(Module, "__rsignal");
+	__rsignal = (void *) GetProcAddress(Module, "__rsignal");
 	if (__rsignal == NULL) {
 		errx(EXIT_FAILURE, "Failed to resolve mpengine entrypoint");
 	}
