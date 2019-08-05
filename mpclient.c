@@ -130,7 +130,7 @@ int main(int argc, char **argv, char **envp)
 	ENGINE_CONFIG EngineConfig;
 	HMODULE Module;
 
-	Module = LoadLibrary(TEXT("engine/mpengine.dll"));
+	Module = LoadLibrary(TEXT("./engine/mpengine.dll"));
 	if (Module == NULL) {
 		errx(EXIT_FAILURE, "Failed to load mpengine module");
 	}
