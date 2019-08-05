@@ -2,7 +2,11 @@
 #define __LOG_H
 
 #ifdef _WIN32
-# define LogMessage(fmt, ...) fprintf(stderr, fmt, __VA_ARGS__), fputc('\n', stderr), fflush(stderr)
+# define LogMessage(fmt, ...) do {			\
+		fprintf(stderr, fmt, __VA_ARGS__);	\
+		fputc('\n', stderr);			\
+		fflush(stderr);				\
+	} while (false)
 #else
 # ifdef NDEBUG
 #  define l_debug(format...)
