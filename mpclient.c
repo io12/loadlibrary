@@ -40,10 +40,10 @@
 #include <mcheck.h>
 #include <err.h>
 
-#include "winnt_types.h"
-#include "pe_linker.h"
-#include "ntoskernel.h"
-#include "util.h"
+//#include "winnt_types.h"
+//#include "pe_linker.h"
+//#include "ntoskernel.h"
+//#include "util.h"
 #include "hook.h"
 #include "log.h"
 #include "rsignal.h"
