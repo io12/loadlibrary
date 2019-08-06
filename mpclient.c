@@ -129,6 +129,7 @@ int main(int argc, char **argv, char **envp)
 	ENGINE_INFO EngineInfo;
 	ENGINE_CONFIG EngineConfig;
 	HMODULE Module;
+	DWORD res;
 
 	Module = LoadLibrary(TEXT("./engine/mpengine.dll"));
 	if (Module == NULL) {
@@ -178,12 +179,12 @@ int main(int argc, char **argv, char **envp)
 	asm volatile ("int3");
 #endif
 
-	if (__rsignal(&KernelHandle, RSIG_BOOTENGINE, &BootParams, sizeof BootParams) != 0) {
+	res = __rsignal(&KernelHandle, RSIG_BOOTENGINE, &BootParams, sizeof BootParams);
+	if (res != 0) {
 		LogMessage("__rsignal(RSIG_BOOTENGINE) returned failure, missing definitions?");
 		LogMessage("Make sure the VDM files and mpengine.dll are in the engine directory");
-#if 0
+		LogMessage("Error code: %#x", res);
 		return 1;
-#endif
 	}
 
 	ZeroMemory(&ScanParams, sizeof ScanParams);
@@ -213,8 +214,10 @@ int main(int argc, char **argv, char **envp)
 
 		LogMessage("Scanning %s...", *argv);
 
-		if (__rsignal(&KernelHandle, RSIG_SCAN_STREAMBUFFER, &ScanParams, sizeof ScanParams) != 0) {
+		res = __rsignal(&KernelHandle, RSIG_SCAN_STREAMBUFFER, &ScanParams, sizeof ScanParams);
+		if (res != 0) {
 			LogMessage("__rsignal(RSIG_SCAN_STREAMBUFFER) returned failure, file unreadable?");
+			LogMessage("Error code: %#x", res);
 			return 1;
 		}
 
