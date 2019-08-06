@@ -174,12 +174,16 @@ int main(int argc, char **argv, char **envp)
 	BootParams.EngineConfig = &EngineConfig;
 	KernelHandle = NULL;
 
+#if 0
 	asm volatile ("int3");
+#endif
 
 	if (__rsignal(&KernelHandle, RSIG_BOOTENGINE, &BootParams, sizeof BootParams) != 0) {
 		LogMessage("__rsignal(RSIG_BOOTENGINE) returned failure, missing definitions?");
 		LogMessage("Make sure the VDM files and mpengine.dll are in the engine directory");
+#if 0
 		return 1;
+#endif
 	}
 
 	ZeroMemory(&ScanParams, sizeof ScanParams);
