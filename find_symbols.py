@@ -14,7 +14,9 @@ def find_symbols():
         subprocess.run(["cabextract", exe, "-d", tmp.name],
                        capture_output=True)
         dll_path = path.join(tmp.name, "mpengine.dll")
-        proc = subprocess.run(["exiftool", dll_path], capture_output=True)
+        proc = subprocess.run(["exiftool", dll_path],
+                              capture_output=True,
+                              encoding="ascii")
         ver = filter(lambda line: "Product Version Number" in line,
                      proc.stdout.splitlines()).__next__().split(" : ")[1]
         print(exe, ver)
