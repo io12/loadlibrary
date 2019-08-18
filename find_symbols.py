@@ -15,8 +15,8 @@ def find_symbols():
         r2.quit()
         syms = syms.splitlines()
         syms = len(syms)
-        s = f"{exe} {syms}"
-        print(s)
+        s = f"{exe} {syms}\n"
+        print(s, end="")
         f.write(s)
 
         #tmp = tempfile.TemporaryDirectory()
