@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 """Find Windows Defender versions compiled with symbols"""
 
-import subprocess
-import tempfile
+import sys
 from glob import glob
-from os import path
 
 import r2pipe
 
@@ -17,7 +15,7 @@ def find_symbols():
         r2.quit()
         syms = syms.splitlines()
         syms = len(syms)
-        print(exe, syms)
+        sys.stdout.write(f"{exe} {syms}")
 
         #tmp = tempfile.TemporaryDirectory()
         #subprocess.run(["cabextract", exe, "-d", tmp.name],
