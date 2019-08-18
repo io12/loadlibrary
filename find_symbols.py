@@ -11,9 +11,10 @@ def find_symbols():
     """Find Windows Defender versions compiled with symbols"""
     for exe in glob("*.exe"):
         tmp = tempfile.TemporaryDirectory()
-        subprocess.run(["cabextract", exe, "-d", tmp.name])
+        subprocess.run(["cabextract", exe, "-d", tmp.name],
+                       capture_output=True)
         dll_path = path.join(tmp.name, "mpengine.dll")
-        proc = subprocess.run(["exiftool", dll_path])
+        proc = subprocess.run(["exiftool", dll_path], capture_output=True)
         ver = filter(lambda line: "Product Version Number" in line,
                      proc.stdout.splitlines()).__next__().split(" : ")[1]
         print(exe, ver)
