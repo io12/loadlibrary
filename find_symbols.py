@@ -20,7 +20,7 @@ def find_symbols():
 
         #tmp = tempfile.TemporaryDirectory()
         #subprocess.run(["cabextract", exe, "-d", tmp.name],
-                       capture_output=True)
+        #               capture_output=True)
         #dll_path = path.join(tmp.name, "mpengine.dll")
         #proc = subprocess.run(["exiftool", dll_path], capture_output=True)
 
