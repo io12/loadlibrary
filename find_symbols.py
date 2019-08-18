@@ -22,7 +22,6 @@ def find_symbols():
         try:
             syms = r2.cmd("f~sym.")
         except BrokenPipeError:
-            r2.quit()
             continue
 
         r2.quit()
