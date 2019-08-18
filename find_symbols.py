@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Find Windows Defender versions compiled with symbols"""
 
+import os
+import subprocess
+import tempfile
 from glob import glob
 
 import r2pipe
@@ -8,9 +11,13 @@ import r2pipe
 
 def find_symbols():
     """Find Windows Defender versions compiled with symbols"""
-    f = open("num_syms.txt", "w", buffering=1)
+    f = open("num_syms_mpengine_dll.txt", "w", buffering=1)
     for exe in glob("*.exe"):
-        r2 = r2pipe.open(exe)
+        tmp = tempfile.TemporaryDirectory()
+        subprocess.run(["cabextract", exe, "-d", tmp.name],
+                       capture_output=True)
+        dll = os.path.join(tmp.name, "mpengine.dll")
+        r2 = r2pipe.open(dll)
         syms = r2.cmd("f~sym.")
         r2.quit()
         syms = syms.splitlines()
@@ -19,10 +26,6 @@ def find_symbols():
         print(s, end="")
         f.write(s)
 
-        #tmp = tempfile.TemporaryDirectory()
-        #subprocess.run(["cabextract", exe, "-d", tmp.name],
-        #               capture_output=True)
-        #dll_path = path.join(tmp.name, "mpengine.dll")
         #proc = subprocess.run(["exiftool", dll_path], capture_output=True)
 
         #exif = proc.stdout.splitlines()
