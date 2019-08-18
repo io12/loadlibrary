@@ -15,9 +15,18 @@ def find_symbols():
                        capture_output=True)
         dll_path = path.join(tmp.name, "mpengine.dll")
         proc = subprocess.run(["exiftool", dll_path], capture_output=True)
-        ver = filter(lambda line: b"Product Version Number" in line,
-                     proc.stdout.splitlines()).__next__().split(
-                         b" : ")[1].decode("utf-8")
+
+        exif = proc.stdout.splitlines()
+        ver = filter(lambda line: b"Product Version Number" in line, exif)
+
+        try:
+            ver = ver.__next__()
+        except StopIteration:
+            continue
+
+        ver = ver.split(b" : ")[1]
+        ver = ver.decode("utf-8")
+
         print(exe, ver)
         #subprocess.run(["x86_64-w64-mingw32-nm", dll_path])
 
