@@ -14,6 +14,7 @@ def find_symbols():
     for exe in glob("*.exe"):
         r2 = r2pipe.open(exe)
         syms = r2.cmd("f~sym.")
+        r2.quit()
         syms = syms.splitlines()
         syms = len(syms)
         print(exe, syms)
