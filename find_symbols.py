@@ -8,7 +8,7 @@ import r2pipe
 
 def find_symbols():
     """Find Windows Defender versions compiled with symbols"""
-    f = open("num_syms.txt", "w")
+    f = open("num_syms.txt", "w", buffering=1)
     for exe in glob("*.exe"):
         r2 = r2pipe.open(exe)
         syms = r2.cmd("f~sym.")
