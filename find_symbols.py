@@ -18,7 +18,13 @@ def find_symbols():
                        capture_output=True)
         dll = os.path.join(tmp.name, "mpengine.dll")
         r2 = r2pipe.open(dll)
-        syms = r2.cmd("f~sym.")
+
+        try:
+            syms = r2.cmd("f~sym.")
+        except BrokenPipeError:
+            r2.quit()
+            continue
+
         r2.quit()
         syms = syms.splitlines()
         syms = len(syms)
